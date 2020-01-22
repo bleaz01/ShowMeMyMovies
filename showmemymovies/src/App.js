@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './App.css';
-import { Header, MovieDetails, MovieList, Loading } from './components';
+import { Header, MovieDetails, MovieList, Loading, Forms } from './components';
 import dataMovies from './components/data';
 
 class App extends React.Component {
@@ -45,14 +45,15 @@ class App extends React.Component {
     return (
       <div className="App d-flex flex-column">
         <Header />
-        {this.state.loaded == true
+        <Forms />
+        {/* {this.state.loaded === true
           ?
           <div className='d-flex flex-row flex-fill p-2'>
             <MovieList movies={this.state.listeMovies} updateDetails={this.updateDetails} />
             <MovieDetails movies={this.state.listeMovies[this.state.selectedMovies]} />
           </div>
           :
-          <Loading />}
+          <Loading />} */}
 
       </div>
 
