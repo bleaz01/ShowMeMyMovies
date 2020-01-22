@@ -19,10 +19,10 @@ export default class Forms extends React.Component {
                     {({ values,
                         handleBlur,
                         handleChange,
-                        handelSubmit,
+                        handleSubmit,
                         isSubmitting
                     }) => (
-                            <form onSubmit={handelSubmit} className=' bg-success p-5 d-flex flex-column'>
+                            <form onSubmit={handleSubmit} className=' bg-success p-5 d-flex flex-column'>
                                 <div className='form-group'>
                                     <label>User</label>
                                     <input name='user' value={values.user} onChange={handleChange} onBlur={handleBlur} type='text' className='form-control'></input>
