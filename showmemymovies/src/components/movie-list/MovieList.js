@@ -7,7 +7,7 @@ export default class MovieList extends Component {
 
     render() {
         const movie = this.props.movies.map((movie, index) => {
-            return (<MovieElements key={movie.titre} movie={movie} updateDetails={() => { this.props.updateDetails(index) }} />)
+            return (<MovieElements key={movie.id} movie={movie} updateDetails={() => { this.props.updateDetails(index) }} />)
         })
         //propType permet de nous assurer que le valeur qui sont données au props sois les bonne lors de la compilation 
         MovieList.propType = {

@@ -15,8 +15,8 @@ export default class MovieElements extends Component {
                 <div className='card'>
                     <img alt='img' src={this.props.movie.img} className='card-img-top' />
                     <div className='card-body bg-ligth pb-5'>
-                        <h5 className="card-title">'{this.props.movie.titre}'</h5>
-                        <p className="card-text">{this.props.movie.genre}</p>
+                        <h5 className="card-title">{this.props.movie.titre}</h5>
+                        <p className="card-text">{this.props.movie.details}</p>
                     </div>
                 </div>
             </div >

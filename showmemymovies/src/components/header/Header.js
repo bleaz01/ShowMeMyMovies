@@ -31,7 +31,7 @@ export default class Header extends React.Component {
                             <a className='nav-link text-warning' href='./'>Home</a>
                         </li>
                         <li className='nav-item'>
-                            <a className='nav-link text-warning' href='./'>Favorie</a>
+                            <a className='nav-link text-warning' href='./'>Devenir membre</a>
                         </li>
                         <li className='nav-item'>
                             <a className='nav-link text-warning' href='./'>{this.state.time}</a>
