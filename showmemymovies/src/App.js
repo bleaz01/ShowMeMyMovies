@@ -1,11 +1,11 @@
 import React from 'react';
 
 import './App.css';
-import { Header, MovieDetails, MovieList, Loading, Forms } from './components';
+import { Header, MovieDetails, MovieList, Loading, Search } from './components';
 import dataMovies from './components/data';
 import apiMovies from './conf/api.movie';
 import data from './components/data';
-import apiMovie from './conf/api.movie';
+import apiMovie, { apiMoviesMap } from './conf/api.movie';
 
 
 class App extends React.Component {
@@ -23,14 +23,7 @@ class App extends React.Component {
   }
   componentDidMount() {
     apiMovie.get('/discover/movie/').then(response => response.data.results).then(data => {
-      const movies = data.map(f => ({
-        id: f.id,
-        img: `https://image.tmdb.org/t/p/w500/${f.backdrop_path}`,
-        titre: f.title,
-        description: f.overview,
-        details: `${f.release_date} | ${f.vote_average}/10`,
-
-      }))
+      const movies = data.map(apiMoviesMap)
       this.updateMovies(movies)
       // this.setState({ listeMovies: [...this.state.listeMovies, { id: data.id, titre: data.title, img: data.poster_path }] })
     }).catch(erro => console.log(erro))
@@ -49,7 +42,7 @@ class App extends React.Component {
     })
   };
 
-  updateMovies(movies) {
+  updateMovies = (movies) => {
     this.setState({
       listeMovies: movies,
       loaded: true
@@ -60,6 +53,9 @@ class App extends React.Component {
     return (
       <div className="App d-flex flex-column">
         <Header />
+        <div className='d-flex flex-row justify-content-end mt-2 mr-2'>
+          <Search updateMovies={this.updateMovies} />
+        </div>
 
         {this.state.loaded === true
           ?

@@ -11,4 +11,15 @@ apiMovie.interceptors.request.use(req => {
     return req
 })
 
+
 export default apiMovie;
+
+export const apiMoviesMap = (f) => ({
+    id: f.id,
+    img: `https://image.tmdb.org/t/p/w500/${f.backdrop_path}`,
+    titre: f.title,
+    description: f.overview,
+    details: `${f.release_date} | ${f.vote_average}/10`,
+
+})
+

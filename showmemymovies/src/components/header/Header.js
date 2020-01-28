@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 export default class Header extends React.Component {
 
 
@@ -27,15 +28,18 @@ export default class Header extends React.Component {
                 </button>
                 <div className='collapse navbar-collapse'>  {/*collapse navbar-collapse nous permets d'avoir un liste dans notre menu déroulant */}
                     <ul className='navbar-nav ml-auto'>
+
                         <li className='nav-item-active'>
                             <a className='nav-link text-warning' href='./'>Home</a>
                         </li>
                         <li className='nav-item'>
                             <a className='nav-link text-warning' href='./'>Devenir membre</a>
                         </li>
+
                         <li className='nav-item'>
                             <a className='nav-link text-warning' href='./'>{this.state.time}</a>
                         </li>
+
 
                     </ul>
                 </div>
