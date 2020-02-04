@@ -11,7 +11,7 @@ export default class MovieElements extends Component {
     render() {
         return (
             // onMouseEnter est un event natif qui nous permet de choper l'élément qui est survolé par la sourie 
-            <div onMouseEnter={this.update} className={'w-25 p-2 ' + Style.container}>
+            <div onClick={this.update} className={'w-25 p-2 ' + Style.container}>
                 <div className='card'>
                     <img alt='img' src={this.props.movie.img} className='card-img-top' />
                     <div className='card-body bg-ligth pb-5'>

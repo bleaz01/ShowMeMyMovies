@@ -1,6 +1,6 @@
 import React from "react"
 import { Formik } from "formik"
-import apiMovie, { apiMoviesMap } from '../../conf/api.movie'
+import apiMovie, { apiMoviesMap } from '../../../../conf/api.movie'
 
 
 
@@ -40,9 +40,9 @@ export default class SearchBar extends React.Component {
                         isSubmitting,
 
                     }) =>
-                        (<form onSubmit={handleSubmit}>
-                            <input type='text' name="query" onBlur={handleBlur} onChange={handleChange} placeholder='Search..' />
-                            <button type='submit' disabled={isSubmitting} className='btn btn-success'>Send</button>
+                        (<form className='d-flex flex-row' onSubmit={handleSubmit}>
+                            <input className='form-control mr-2' type='text' name="query" onBlur={handleBlur} onChange={handleChange} placeholder='Search..' />
+                            <button type='submit' disabled={isSubmitting} className='btn btn-success text-warning'>Send</button>
                         </form>)}
 
             </Formik>

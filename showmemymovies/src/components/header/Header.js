@@ -33,7 +33,7 @@ export default class Header extends React.Component {
                             <a className='nav-link text-warning' href='./'>Home</a>
                         </li>
                         <li className='nav-item'>
-                            <a className='nav-link text-warning' href='./'>Devenir membre</a>
+                            <a className='nav-link text-warning' href='/login'>Devenir membre</a>
                         </li>
 
                         <li className='nav-item'>

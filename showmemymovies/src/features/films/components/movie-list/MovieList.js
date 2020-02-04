@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import MovieElements from './movieElement/MovieElement'
+import MovieElements from '../movieElement/MovieElement'
 import PropType from 'prop-types';
 
 export default class MovieList extends Component {
