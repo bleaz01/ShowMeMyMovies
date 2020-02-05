@@ -1,4 +1,5 @@
 import React from 'react'
+// import { Redirect } from 'react-router-dom'
 import { Formik, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup';
 
@@ -7,7 +8,7 @@ const SetField = ({ field, form, ...props }) => {
     return (
         <div className='form-group'>
             <label>{field.name}</label>
-            <input {...field} {...props} type='text' className='form-control'></input> {/*par défaul le type sera text sinon {...props} qui donnera le type  */}
+            <input {...field} {...props} className='form-control'></input> {/*par défaul le type sera text sinon {...props} qui donnera le type  */}
         </div>
     )
 }
@@ -19,8 +20,20 @@ const Custom = (props) => {
 }
 export default class Forms extends React.Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            isConnected: false,
+        }
+        // console.log(this.props.isConnected)
+    }
+
     submit = (values) => {
         console.log(values)
+        this.props = { isConnected: true }
+        console.log(this.props.isConnected);
+
+
     }
     // Yup nous permet un controle sur les erreur et les autorisation du formulaire
     userSchema = Yup.object().shape({
@@ -42,6 +55,7 @@ export default class Forms extends React.Component {
     // }
 
     render() {
+
         return (
             <div className='container-fluid p-5 d-flex flex-column align-items-center justify-content-center'>
                 {/* Formik est un module pour faire des formulairs plus rapidement */}
@@ -63,7 +77,7 @@ export default class Forms extends React.Component {
                     }) => (
                             <form onSubmit={handleSubmit} className=' bg-success p-5 d-flex flex-column'>
 
-                                <Field name='user' component={SetField} />
+                                <Field name='user' type='text' component={SetField} />
                                 <ErrorMessage name='user' component={Custom} />
                                 <Field name='email' type='email' component={SetField} />
                                 <ErrorMessage name='email' component={Custom} />

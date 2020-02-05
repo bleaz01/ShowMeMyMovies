@@ -3,13 +3,12 @@ import { MovieDetails, Search, MovieList } from './components'
 import Loading from '../../components/utils/Loading'
 
 export default (props) => {
-    console.log('my props')
-    console.log(props)
+
 
     return (
 
-        <div>
-            <div className="d-flex flex-row justify-content-end">
+        <div >
+            <div className="d-flex flex-row justify-content-end m-2">
                 <Search updateMovies={props.updateMovies} />
             </div>
             {props.loaded === true
@@ -18,11 +17,15 @@ export default (props) => {
                     <MovieList
                         movies={props.movies}
                         updateDetails={props.updateDetails}
+                        addFavori={props.addFavori}
+                        removeFavori={props.removeFavori}
+                        favoris={props.favoris}
                     />
                     <MovieDetails movies={props.movies[props.selectedMovies]} />
                 </div>
                 :
-                <Loading />}
+                <Loading />
+            }
 
         </div>
     )

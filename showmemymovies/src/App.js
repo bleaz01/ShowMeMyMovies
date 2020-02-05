@@ -1,25 +1,106 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
-import Home from './Home'
-import { Header, Search, Forms } from './components'
+import apiMovie, { apiMoviesMap } from './conf/api.movie';
+import Films from './features/films'
+import Favoris from './features/favories'
+import { Header, Forms } from './components'
+import _ from 'lodash'
 
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            listeMovies: null,
+            selectedMovies: 0,
+            loaded: false,
+            favoris: [],
+            isConnected: true
+
+        }
+
+
+    }
+    componentDidMount() {
+        apiMovie.get('/discover/movie/').then(response => response.data.results).then(data => {
+            const movies = data.map(apiMoviesMap)
+            this.updateMovies(movies)
+            // this.setState({ listeMovies: [...this.state.listeMovies, { id: data.id, titre: data.title, img: data.poster_path }] })
+        }).catch(erro => console.log(erro))
+    }
+
+    //updateDetais est une methode de notre class App qui va nous permets de modifier l 'élément de Moviedetails
+    updateDetails = (index) => {
+        //.fintIndex() est une methode nativ a javascrip pour trouvé une items dans un Array
+        // const index = this.state.listeMovies.findIndex((rf) => {
+        //   return titre === rf.titre
+        // })
+
+        // this.setState nous permet de modifier l'étas du state
+        this.setState({
+            selectedMovies: index
+        })
+    };
+
+    updateMovies = (movies) => {
+        this.setState({
+            listeMovies: movies,
+            loaded: true
+
+        })
+    }
+
+    addFavori = (titre) => {
+        const favoris = this.state.favoris.slice(); //slice et un methode en JavaScrip pour copier un array 
+        const film = this.state.listeMovies.find(m => m.titre === titre);
+        favoris.push(film);
+        this.setState({
+            favoris
+        });
+    }
+
+    removeFavori = (id) => {
+        const favoris = this.state.favoris.slice();
+        const index = _.remove(this.state.favoris, m => m.id === id);  //_.remove  methode de lodash 
+        favoris.splice(index, 1);
+        this.setState({
+            favoris
+        });
+
+    }
     render() {
         return (
-            <div className="App d-flex flex-column">
-                <Header />
-                <div className='d-flex flex-row justify-content-end mt-2 mr-2'>
-                    <Router>
+            <Router>
+                <div className="App d-flex flex-column">
+                    <Header isConnected={this.state.isConnected} />
+                    <div >
                         <Switch>
-                            <Route path="/" exact render={() => <Home />}></Route>
-                            <Route path="/login" render={() => <Forms />}></Route>
+                            <Route path="/" exact render={() =>
+                                <Films
+                                    updateDetails={this.updateDetails}
+                                    movies={this.state.listeMovies}
+                                    updateMovies={this.updateMovies}
+                                    loaded={this.state.loaded}
+                                    selectedMovies={this.state.selectedMovies}
+                                    isConnected={this.state.isConnected}
+                                    addFavori={this.addFavori}
+                                    removeFavori={this.removeFavori}
+                                    favoris={this.state.favoris.map(f => f.titre)}
+                                />
+
+
+                            } />
+                            <Route exact path="/favoris" render={() => <Favoris
+                                film={this.state.favoris}
+                            />}
+                            />
+
+                            <Route path="/login" render={() => <Forms isConnected={this.state.isConnected} />}></Route>
                             <Redirect to="/"></Redirect>
                         </Switch>
-                    </Router>
+                    </div>
                 </div>
-            </div>
-
+            </Router>
         )
     }
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 
 export default class Header extends React.Component {
@@ -8,7 +9,8 @@ export default class Header extends React.Component {
         super(props);
 
         this.state = {
-            time: ''
+            time: '',
+            isConnected: props.isConnected
         }
         setInterval(() => {
             this.setState({
@@ -30,10 +32,14 @@ export default class Header extends React.Component {
                     <ul className='navbar-nav ml-auto'>
 
                         <li className='nav-item-active'>
-                            <a className='nav-link text-warning' href='./'>Home</a>
+                            <NavLink to='/' className='nav-link text-warning'>Home</NavLink>
                         </li>
                         <li className='nav-item'>
-                            <a className='nav-link text-warning' href='/login'>Devenir membre</a>
+                            {this.state.isConnected === false
+                                ? <NavLink to='/login' className='nav-link text-warning'>Devenir Membre </NavLink>
+                                : <NavLink to='/favoris' className='nav-link text-warning'>Favoris</NavLink>
+                            }
+
                         </li>
 
                         <li className='nav-item'>

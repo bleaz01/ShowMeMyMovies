@@ -7,7 +7,7 @@ export default class MovieDetails extends React.Component {
         return (
 
             <div className='w-25 border pt-4 d-flex flex-column '>
-                <h5>{this.props.movies.titre}</h5>
+                <h5 className='text-center'>{this.props.movies.titre}</h5>
                 <hr className='w-100' />
                 <img className='d-block ' alt={this.props.movies.titre} src={this.props.movies.img} />
                 <hr className='w-100' />
