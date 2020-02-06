@@ -4,20 +4,20 @@ export default class Favoris extends React.Component {
 
     render() {
 
-        console.log(this.props.film)
         const film = this.props.film.map((film, index) => {
             return (
-                <div className={'w-25 p-2 ' + Style.container}>
+                <div key={film.id + index} className={'w-25 p-2 ' + Style.container}>
                     <div className='card'>
                         <img alt='img' src={film.img} className='card-img-top' />
-                        <div className='card-body bg-ligth pb-5'>
+                        <div className='card-body bg-ligth pb-5 mb-3'>
                             <h5 className="card-title">{film.titre}</h5>
                             <p className="card-text">{film.details}</p>
-
+                            <button className="btn btn-danger" onClick={() => this.props.remove(film.id)}>remove</button>
                         </div>
                     </div>
                 </div >
             )
+
         })
 
         return (
